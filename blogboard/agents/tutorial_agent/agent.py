@@ -28,11 +28,11 @@ def tutorial_node(state: BlogState) -> BlogState:
         # Filter out ainews so tutorial agent doesn't pick it
         valid_domains = {k: v for k, v in domain_dates.items() if k != "ainews"}
         
-        sorted_domains = sorted(valid_domains.items(), key=lambda item: item[1])
-        target_domain = sorted_domains[0][0]
+        # sorted_domains = sorted(valid_domains.items(), key=lambda item: item[1])
+        # target_domain = sorted_domains[0][0]
 
-        # domain_candidates = [k for k, v in valid_domains.items() if v == "Never"] or list(valid_domains.keys())
-        # target_domain = random.choice(domain_candidates)
+        domain_candidates = [k for k, v in valid_domains.items() if v == "Never"] or list(valid_domains.keys())
+        target_domain = random.choice(domain_candidates)
         
         tags_config = app_settings.tags.model_dump()
         cat_label = tags_config.get(target_domain, {}).get("label", target_domain)
